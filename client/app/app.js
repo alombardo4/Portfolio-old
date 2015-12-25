@@ -8,7 +8,9 @@ angular.module('portfolioApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'validation.match'
+  'validation.match',
+  'ngMaterial',
+  'textAngular'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

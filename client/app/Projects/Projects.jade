@@ -1,0 +1,12 @@
+navbar
+md-content(ng-init="init()")
+  h2 Projects
+  a(ng-repeat='project in projects | orderBy: "-date"' ng-href='/Projects/{{project._id}}')
+    md-card
+      md-card-content
+        h2.md-card-title {{project.title}}
+        p {{project.date | date: 'M/dd/yy'}}
+        p(ng-bind-html='project.preview | HTMLString')
+    
+  md-button.md-raised.md-primary(ng-if="isAdmin" ng-href='/Project/new') Create New Project
+footer
