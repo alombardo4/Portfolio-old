@@ -10,7 +10,8 @@ angular.module('portfolioApp', [
   'ui.router',
   'validation.match',
   'ngMaterial',
-  'textAngular'
+  'textAngular',
+  'ngFileUpload'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

@@ -1,12 +1,15 @@
 navbar
-md-content(ng-init="init()")
+md-content(ng-init="init()" layout-padding layout-margin layout-fill)
+  a(href='/Projects' flex) Back to Projects
   md-card
     md-card-content
-      h2.card-title Project Create/Edit
+      h2.card-title Project {{mode==='edit' ? 'Edit' : 'Create'}}
       form(ng-submit="saveProject()" layout='column')
         md-input-container
           label Title
           input(type='text' ng-model='project.title' name='title' required)
+        md-checkbox(ng-model="project.show")
+          | Make project visible
         div
           label Body
           text-angular(ng-model='project.body' name='body' required)
@@ -14,6 +17,28 @@ md-content(ng-init="init()")
           label Preview
           text-angular(ng-model='project.preview' name='preview' required)
         md-datepicker(ng-model='project.date' name='date' required placeholder='Enter date')
-        md-checkbox(ng-model="project.show")
-          | Make project visible
-        md-button.md-primary.md-raised(type='submit') Save
+      
+        span(layout='row' layout-align='end center')
+          md-button.md-warn.md-raised.md-icon-button(ng-if='mode==="edit"' ng-click='deleteProject()')
+            md-icon
+              i.material-icons delete
+          md-button.md-primary.md-raised.md-icon-button(type='submit')
+            md-icon
+              i.material-icons save
+        md-card(ng-show='mode==="edit"')
+          md-card-content
+            h2.md-title Upload Images
+            form(name='addFile')
+              md-button(ngf-select="upload($file)") Select File
+              md-progress-linear(ng-hide="progressPercentage === 0 || progressPercentage === 100 || progressPercentage === undefined" md-mode="query" value="{{progressPercentage}}")
+        md-card(ng-show='mode==="edit"')
+          md-card-content
+            h2.md-title Remove Images
+            p(ng-hide='project.files.length > 0') You don't have any images
+            div(ng-show="project.files.length > 0" layout="row" layout-wrap layout-align="space-between center ")
+              md-card(flex="30" flex-md="45" flex-sm="100" ng-repeat="image in project.files track by $index")
+                img(ng-src="/api/projects/images/{{image}}" class="md-card-image")
+                span(layout="row" layout-align="end start")
+                  md-button.md-icon-button(ng-click="removeImage(image, $index)")
+                    md-icon
+                      i.material-icons delete

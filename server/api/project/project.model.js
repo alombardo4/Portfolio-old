@@ -9,8 +9,8 @@ var ProjectSchema = new Schema({
   preview: String,
   show: Boolean,
   date: Date,
-  images: [
-
+  files: [
+    String
   ]
 });
 

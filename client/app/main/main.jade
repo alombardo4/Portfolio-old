@@ -1,3 +1,15 @@
-navbar
-div this is main
-footer
+md-content(ng-init="init()" layout-fill layout-padding layout-margin)
+  h1.md-display-4 {{profile.name}}
+  hr
+  h3.md-headline Projects
+  md-content(layout-wrap layout='row' layout-align='center center')
+    md-card(ng-repeat='project in projects | limitTo: 6' flex='30' flex-sm='45' flex-xs='100')
+      md-card-content()
+        h4.md-card-title {{project.title}}
+        p(ng-if='!project.show')
+        p {{project.date | date: 'M/dd/yy'}}
+        p(ng-bind-html='project.preview | HTMLString') 
+        a(href='/Projects/{{project._id}}') More information...   
+    a(ng-if='projects.length > 6' href='/Projects') See more...
+  hr
+  

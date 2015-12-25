@@ -18,6 +18,12 @@ angular.module('portfolioApp')
     factory.getProjects = function() {
       return $http.get('/api/projects');
     };
+    factory.getAllProjects = function() {
+      return $http.get('/api/projects/all');
+    };
+    factory.removeImage = function(project, index) {
+      return $http.post('/api/projects/' + project._id + '/removeImage', {index : index});
+    };
     return factory;
     // AngularJS will instantiate a singleton by calling "new" on this function
   });

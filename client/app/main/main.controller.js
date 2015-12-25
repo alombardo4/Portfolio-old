@@ -1,31 +1,18 @@
 'use strict';
 
-(function() {
-
-class MainController {
-
-  constructor($http) {
-    this.$http = $http;
-    this.awesomeThings = [];
-
-    $http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-    });
-  }
-
-  addThing() {
-    if (this.newThing) {
-      this.$http.post('/api/things', { name: this.newThing });
-      this.newThing = '';
-    }
-  }
-
-  deleteThing(thing) {
-    this.$http.delete('/api/things/' + thing._id);
-  }
-}
-
 angular.module('portfolioApp')
-  .controller('MainController', MainController);
+  .controller('MainController', function ($scope, Auth, Projects) {
+    $scope.isAdmin = Auth.isAdmin();
 
-})();
+    $scope.profile = {
+      name: 'Alec Lombardo'
+      
+    };
+
+    $scope.init = function() {
+      Projects.getProjects().then(function(result) {
+        $scope.projects = result.data;
+      });
+
+    };
+  });

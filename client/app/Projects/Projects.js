@@ -17,14 +17,18 @@ angular.module('portfolioApp')
         url: '/Project/new',
         templateUrl: 'app/Projects/Project-form.html',
         controller: 'ProjectsFormCtrl',
-        authenticate: true,
         authenticate: 'admin'
       })
       .state('EditProject', {
         url: '/Projects/:projectId/edit',
         templateUrl: 'app/Projects/Project-form.html',
         controller: 'ProjectsFormCtrl',
-        authenticate: true,
+        authenticate: 'admin'
+      })
+      .state('AllProjects', {
+        url: '/Projects-all',
+        templateUrl: 'app/Projects/Projects.html',
+        controller: 'ProjectsCtrl',
         authenticate: 'admin'
       });
   });

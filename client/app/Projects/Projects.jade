@@ -1,12 +1,17 @@
 navbar
-md-content(ng-init="init()")
+md-content(ng-init="init()" layout-padding layout-margin layout-fill)
   h2 Projects
-  a(ng-repeat='project in projects | orderBy: "-date"' ng-href='/Projects/{{project._id}}')
-    md-card
-      md-card-content
-        h2.md-card-title {{project.title}}
-        p {{project.date | date: 'M/dd/yy'}}
-        p(ng-bind-html='project.preview | HTMLString')
-    
-  md-button.md-raised.md-primary(ng-if="isAdmin" ng-href='/Project/new') Create New Project
+  md-card(ng-repeat='project in projects | limitTo: 6' flex='30' flex-sm='45' flex-xs='100')
+    md-card-content()
+      h4.md-card-title {{project.title}}
+      p(ng-if='!project.show')
+      p {{project.date | date: 'M/dd/yy'}}
+      p(ng-bind-html='project.preview | HTMLString') 
+      a(href='/Projects/{{project._id}}') More information...   
+  a(ng-if='projects.length > 6' href='/Projects') See more...
+  span(layout='row' layout-align='end center')
+    md-button.md-raised(ng-if="isAdmin" ng-href='/Projects-all') Show all projects
+    md-button.md-raised.md-primary.md-icon-button(ng-if="isAdmin" ng-href='/Project/new')
+      md-icon
+        i.material-icons create
 footer

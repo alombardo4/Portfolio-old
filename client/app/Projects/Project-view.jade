@@ -1,10 +1,19 @@
 navbar
-md-content(ng-init='init()')
-  md-card
+md-content(ng-init="init()" layout-padding layout-margin layout-fill)
+  a(href='/Projects' flex) Back to Projects
+  md-card(flex)
     md-card-content
       h1 {{project.title}}
+      p(ng-if='!project.show')
+        i Hidden
       p
         strong {{project.date | date: 'M/dd/yy'}}
       p(ng-bind-html='project.body | HTMLString')
-      md-button.md-raised.md-primary(ng-if="isAdmin" ng-href='/Projects/{{project._id}}/edit') Edit
+      md-content(layout='row' layout-align='center center' layout-wrap layout-padding layout-fill layout-margin)
+        md-card(flex="45" flex-xs="100" ng-repeat="image in project.files track by $index")
+          img(ng-src="/api/projects/images/{{image}}" class="md-card-image")
+      span(layout='row' layout-align='end start')
+        md-button.md-raised.md-primary.md-icon-button(ng-if="isAdmin" ng-href='/Projects/{{project._id}}/edit')
+          md-icon
+            i.material-icons edit
 footer

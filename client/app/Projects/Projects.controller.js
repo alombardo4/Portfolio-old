@@ -12,6 +12,10 @@ angular.module('portfolioApp')
         Projects.getProject($state.params.projectId).then(function(result) {
           $scope.project = result.data;
         });
+      } else if ($state.current.name === 'AllProjects') {
+        Projects.getAllProjects().then(function(result) {
+          $scope.projects = result.data;
+        });
       }
 
     };
