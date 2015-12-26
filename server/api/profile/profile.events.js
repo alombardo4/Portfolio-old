@@ -1,15 +1,15 @@
 /**
- * Thing model events
+ * profile model events
  */
 
 'use strict';
 
 var EventEmitter = require('events').EventEmitter;
-var Thing = require('./thing.model');
-var ThingEvents = new EventEmitter();
+var profile = require('./profile.model');
+var profileEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-ThingEvents.setMaxListeners(0);
+profileEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Thing.schema.post(e, emitEvent(event));
+  profile.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    ThingEvents.emit(event + ':' + doc._id, doc);
-    ThingEvents.emit(event, doc);
+    profileEvents.emit(event + ':' + doc._id, doc);
+    profileEvents.emit(event, doc);
   }
 }
 
-module.exports = ThingEvents;
+module.exports = profileEvents;
