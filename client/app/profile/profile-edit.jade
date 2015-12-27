@@ -1,0 +1,38 @@
+navbar
+md-content(ng-init='init()')
+  h2 Edit Profile
+  md-card
+    md-card-content
+      h2.md-card-title Information
+      p Enter your profile information below
+      form(ng-submit="saveProfile()" layout='column')
+        md-input-container
+          label Your name
+          input(type='text' ng-model='profile.name')
+        md-input-container
+          label Blog URL
+          input(type='text' ng-model='profile.blogUrl')  
+        md-input-container
+          label LinkedIn URL
+          input(type='text' ng-model='profile.linkedInUrl')
+        md-input-container
+          label GitHub URL
+          input(type='text' ng-model='profile.githubUrl')  
+        md-input-container
+          label Facebook URL
+          input(type='text' ng-model='profile.facebookUrl')  
+        md-input-container
+          label Twitter URL
+          input(type='text' ng-model='profile.twitterUrl')  
+        md-input-container
+          label Flickr URL
+          input(type='text' ng-model='profile.flickrUrl') 
+        md-checkbox(ng-model="project.showPortrait")
+          | Show Portrait Image
+        md-checkbox(ng-model="project.showBackground")
+          | Show Background Image
+        span(layout='row' layout-align='end center')
+          md-button.md-primary.md-icon-button(type='submit')
+            md-icon
+              i.material-icons save
+footer

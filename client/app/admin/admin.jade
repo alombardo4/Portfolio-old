@@ -1,11 +1,21 @@
 navbar
-.container
-  p
-    | The delete user and user index api routes are restricted to users with the 'admin' role.
-  ul.list-group
-    li.list-group-item(ng-repeat='user in admin.users')
-      strong {{user.name}}
-      br
-      span.text-muted {{user.email}}
-      a.trash(ng-click='admin.delete(user)')
-        span.glyphicon.glyphicon-trash.pull-right
+md-content
+  h2 Admin
+  md-card
+    md-card-content
+      h2.md-card-title Actions
+      md-button.md-raised(href='/Projects') Show Projects
+      md-button.md-raised(href='/Projects-all') Show All Projects
+      md-button.md-raised(href='/Project/new') Create Project
+      md-button.md-raised(href='/profile/edit') Edit Profile
+
+  md-card
+    md-card-content
+      h2.md-card-title User Management
+      md-list
+        md-list-item(ng-repeat='user in admin.users')
+          p {{user.name}} - {{user.email}}
+          md-icon.md-secondary(ng-click='admin.delete(user)')
+            i.material-icons delete
+          md-divider(ng-if='!$last')
+footer

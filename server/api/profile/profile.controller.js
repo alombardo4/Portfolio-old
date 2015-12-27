@@ -72,13 +72,13 @@ exports.index = function(req, res) {
 
 // Creates a new profile in the DB
 exports.create = function(req, res) {
-  var profile = new profile(req.body);
+  var prof = new profile(req.body);
   profile.find().limit(1).exec(function(err, result) {
     if (err) return res.status(400).send(err);
     if (result.length && result.length > 0) {
       return res.status(400).send({message : 'Profile already exists'});
     }
-    profile.create(profile, function(err, result) {
+    profile.create(prof, function(err, result) {
       if (err) return res.status(500).send(err);
       return res.json(result);
     });
@@ -91,13 +91,15 @@ exports.update = function(req, res) {
   profile.find().limit(1).exec(function(err, result) {
     if (err) return res.status(400).send(err);
     if (result.length && result.length > 0) {
-      return res.status(400).send({message : 'Profile already exists'});
+      var updated = _.merge(result[0], req.body);
+      updated.save(function(err, result) {
+        if (err) return res.status(500).send(err);
+        return res.json(result);
+      })
+    } else {
+      return res.status(400).send({message : 'Profile does not exist'});
     }
-    var updated = _.merge(result, req.body);
-    updated.save(function(err, result) {
-      if (err) return res.status(500).send(err);
-      return res.json(result);
-    })
+
   });
 };
 
