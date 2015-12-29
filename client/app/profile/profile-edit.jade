@@ -10,6 +10,9 @@ md-content(ng-init='init()')
           label Your name
           input(type='text' ng-model='profile.name')
         md-input-container
+          label Headline
+          input(type='text' ng-model='profile.headline')
+        md-input-container
           label Blog URL
           input(type='text' ng-model='profile.blogUrl')  
         md-input-container
@@ -27,8 +30,6 @@ md-content(ng-init='init()')
         md-input-container
           label Flickr URL
           input(type='text' ng-model='profile.flickrUrl') 
-        md-checkbox(ng-model="profile.showPortrait")
-          | Show Portrait Image
         md-checkbox(ng-model="profile.showBackground")
           | Show Background Image
         span(layout='row' layout-align='end center')
@@ -37,25 +38,16 @@ md-content(ng-init='init()')
               i.material-icons save
       md-card(ng-show='mode==="edit"')
         md-card-content
-          h2.md-title Upload Images
+          h2.md-title Upload Background Image
           div(layout='row')
             form(name='addBackgroundImage')
               md-button.md-raised(ngf-select="uploadBackground($file)") Select Background
               md-progress-linear(ng-hide="progressPercentageBackground === 0 || progressPercentageBackground === 100 || progressPercentageBackground === undefined" md-mode="query" value="{{progressPercentageBackground}}")
-            form(name='addPortraitImage')
-              md-button.md-raised(ngf-select="uploadPortrait($file)") Select Portrait
-              md-progress-linear(ng-hide="progressPercentageBackground === 0 || progressPercentageBackground === 100 || progressPercentageBackground === undefined" md-mode="query" value="{{progressPercentageBackground}}")
 
       md-card(ng-show='mode==="edit"')
         md-card-content
-          h2.md-title Preview Images
+          h2.md-title Preview Background
           div(layout='row' layout-align='center center' layout-wrap)
-            md-card(flex="45" flex-md="45" flex-sm="100" ng-show='profile.backgroundImage')
+            md-card(ng-show='profile.backgroundImage')
               img(ng-src="/api/profile/image/{{profile.backgroundImage}}" class="md-card-image")
-              md-card-content
-                h3.md-title Background
-            md-card(flex="45" flex-md="45" flex-sm="100" ng-show='profile.portraitImage')
-              img(ng-src="/api/profile/image/{{profile.portraitImage}}" class="md-card-image")
-              md-card-content
-                h3.md-title Portrait
 footer

@@ -1,8 +1,8 @@
 navbar
 md-content(ng-init="init()" layout-padding layout-margin layout-fill)
-  a(href='/Projects' flex) Back to Projects
   md-card(flex)
     md-card-content
+      a(href='/Projects' flex) All Projects
       h1 {{project.title}}
       p(ng-if='!project.show')
         i Hidden

@@ -14,6 +14,22 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 md-content {
   background-color: rgba(0,0,0,0);
 }
+path {
+  stroke: white;
+  fill:none;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+svg#github path {
+  stroke-width: 0;
+  fill: white;
+
+}
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+  background-color: rgba(255, 255, 255, 0.18);
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {

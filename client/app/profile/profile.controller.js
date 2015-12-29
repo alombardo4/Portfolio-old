@@ -84,29 +84,5 @@ angular.module('portfolioApp')
       });
     };
 
-    $scope.uploadPortrait = function (file) {
-      Upload.upload({
-        url: '/api/profile/addPortrait',
-        method: 'POST',
-        file: file
-      }).progress(function(event) {
-        $scope.progressPercentagePortrait = parseInt(100.0 * event.loaded / event.total);
-        $scope.$apply();
-      }).success(function(/*data, status, headers, config*/) {
-        $scope.init();
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Upload complete!')
-            .hideDelay(1000)
-        );
-      }).error(function(err) {
-        $scope.uploadInProgress = false;
-        console.log('error status: ' + err);
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('An error occurred.')
-            .hideDelay(1000)
-        );
-      });
-    };
+
   });

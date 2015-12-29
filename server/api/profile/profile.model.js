@@ -13,8 +13,7 @@ var ProfileSchema = new Schema({
   flickrUrl: String,
   backgroundImage: String,
   showBackground: Boolean,
-  portraitImage: String,
-  showPortrait: Boolean
+  headline: String
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
