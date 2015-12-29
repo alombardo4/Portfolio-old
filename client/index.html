@@ -25,14 +25,24 @@
     <!-- endbuild -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+      $( document ).ready(function() {
+          $.get( "/api/profile", function( data ) {
+            if (data.showBackground && data.backgroundImage) {
+              $('#body').css({'background-image' : 'url(api/profile/image/' + data.backgroundImage + ')'});
+            }
+          });
+      });
+    </script>
   </head>
-  <body ng-app="portfolioApp">
+  <body id="body" ng-app="portfolioApp"  style='background-size: cover; background: no-repeat center center fixed;'>
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+    <div style='background-color: rgba(0,0,0,0);' ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -43,6 +53,8 @@
       ga('create', 'UA-XXXXX-X');
       ga('send', 'pageview');
     </script>
+
+
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -81,7 +93,7 @@
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/profile/Projects.service.js"></script>
+      <script src="app/main/main.js"></script>
       <script src="app/Projects/ProjectsForm.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/account/login/login.controller.js"></script>
@@ -92,7 +104,6 @@
       <script src="app/admin/admin.router.js"></script>
       <script src="app/app.constant.js"></script>
       <script src="app/main/main.controller.js"></script>
-      <script src="app/main/main.js"></script>
       <script src="app/Projects/Projects.controller.js"></script>
       <script src="app/profile/profile.controller.js"></script>
       <script src="app/profile/profile.router.js"></script>
