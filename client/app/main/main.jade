@@ -21,7 +21,7 @@ md-content(ng-init="init()" layout-fill layout-padding layout-margin)
       md-card-content()
         h4.md-card-title {{project.title}}
         p(ng-if='!project.show')
-        p {{project.date | date: 'M/dd/yy'}}
+        p {{project.date | date: 'M/d/yy'}}
         p(ng-bind-html='project.preview | HTMLString') 
         a(href='/Projects/{{project._id}}') More information...   
     a(ng-if='projects.length > 6' href='/Projects') See more...

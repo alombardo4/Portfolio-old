@@ -7,7 +7,7 @@ md-content(ng-init="init()" layout-padding layout-margin layout-fill)
       p(ng-if='!project.show')
         i Hidden
       p
-        strong {{project.date | date: 'M/dd/yy'}}
+        strong {{project.date | date: 'M/d/yy'}}
       p(ng-bind-html='project.body | HTMLString')
       md-content(layout='row' layout-align='center center' layout-wrap layout-padding layout-fill layout-margin)
         md-card(flex="45" flex-xs="100" ng-repeat="image in project.files track by $index")

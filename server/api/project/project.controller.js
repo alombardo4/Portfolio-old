@@ -64,7 +64,7 @@ function removeEntity(res) {
 
 // Gets a list of Projects
 exports.index = function(req, res) {
-  Project.find({show: true}).exec(function(err, result) {
+  Project.find({show: true}).sort({date: -1}).exec(function(err, result) {
     if (err) return res.status(500).send(err);
     return res.json(result);
   });

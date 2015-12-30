@@ -6,7 +6,7 @@ md-content(ng-init="init()" layout-padding layout-margin layout-fill)
       md-card-content()
         h4.md-card-title {{project.title}}
         p(ng-if='!project.show')
-        p {{project.date | date: 'M/dd/yy'}}
+        p {{project.date | date: 'M/d/yy'}}
         p(ng-bind-html='project.preview | HTMLString') 
         a(href='/Projects/{{project._id}}') More information...   
   span(layout='row' layout-align='end center')
